@@ -21,6 +21,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Home: NextPage = () => {
   const { toggleColorMode } = useColorMode();
+  const iconSize = { base: 4, md: 6 };
   return (
     <>
       <Head>
@@ -33,21 +34,26 @@ const Home: NextPage = () => {
         paddingX={{ base: 4, md: 8 }}
         boxShadow="lg"
       >
-        <Heading>Password Manager</Heading>
-
+        <Heading as="h1" fontSize={{ base: "xl", md: "3xl" }}>
+          Password Manager
+        </Heading>
         <HStack spacing={4}>
           <IconButton
             aria-label="Switch between dark and light mode"
-            icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
+            icon={useColorModeValue(
+              <MoonIcon boxSize={iconSize} />,
+              <SunIcon boxSize={iconSize} />
+            )}
             backgroundColor="transparent"
             onClick={toggleColorMode}
+            isRound
           />
           <Link
             isExternal
             cursor="pointer"
             href="https://github.com/aabishkaryal/password-manager"
           >
-            <Icon as={FaGithub} />
+            <Icon as={FaGithub} boxSize={iconSize} />
           </Link>
         </HStack>
       </HStack>
