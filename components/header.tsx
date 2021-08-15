@@ -25,6 +25,7 @@ export const Header: ChakraComponent<"div", {}> = () => {
 			paddingY={4}
 			paddingX={{ base: 4, md: 8 }}
 			boxShadow="lg"
+			width="100%"
 		>
 			<Heading as="h1" fontSize={{ base: "xl", md: "3xl" }}>
 				Password Manager
