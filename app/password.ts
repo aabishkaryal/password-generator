@@ -1,4 +1,11 @@
 import { GetRandomInt } from "@app/utils";
+import {
+	LOWERCASE_ALPHABETS,
+	UPPERCASE_ALPHABETS,
+	NUMBERS,
+	SPECIAL_CHARS,
+	AMBIGIOUS_CHARS,
+} from "./constants";
 
 export type GeneratorParams = {
 	numLetters: number;
@@ -6,12 +13,6 @@ export type GeneratorParams = {
 	numSpecialChars?: number;
 	ambigious?: boolean;
 };
-
-const LOWERCASE_ALPHABETS = "abcdefghijklmnopqrstuvwxyz";
-const UPPERCASE_ALPHABETS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const NUMBERS = "0123456789";
-const SPECIAL_CHARS = "!@#$%^&*";
-const AMBIGIOUS_CHARS = "({}[]()/\\'\"`~,;:.<>)";
 
 export function GeneratePassword({
 	numLetters = 8,
@@ -31,7 +32,12 @@ export function GeneratePassword({
 		chars.push(char);
 		if (letters.indexOf(char) >= 0) numLetters--;
 		if (NUMBERS.indexOf(char) >= 0) numNumbers--;
-		if (SPECIAL_CHARS.indexOf(char) >= 0) numSpecialChars--;
+		if (
+			SPECIAL_CHARS.indexOf(char) >= 0 ||
+			(ambigious && AMBIGIOUS_CHARS.indexOf(char) >= 0)
+		)
+			numSpecialChars--;
 	}
+	chars.sort(() => 0.5 - Math.random());
 	return chars.join("");
 }
