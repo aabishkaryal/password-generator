@@ -26,14 +26,19 @@ export const Generator: ChakraComponent<"div", {}> = () => {
 
 	const { onCopy, hasCopied } = useClipboard(password);
 	return (
-		<VStack spacing={6} marginX={4} id="generator" marginTop={{ base: 8 }}>
+		<VStack
+			spacing={6}
+			marginX={4}
+			id="generator"
+			marginTop={{ base: 8 }}
+			w={{ base: "80%", md: "65%", lg: "50%" }}
+		>
 			<HStack
 				justifyContent="space-between"
 				padding={4}
 				spacing={6}
 				width="100%"
 				id="display"
-				w={{ base: "80%", md: "65%", lg: "50%" }}
 			>
 				<InputGroup>
 					<Input

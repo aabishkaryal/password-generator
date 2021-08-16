@@ -27,7 +27,7 @@ export const Header: ChakraComponent<"div", {}> = () => {
 			boxShadow="lg"
 			width="100%"
 		>
-			<Heading as="h1" fontSize={{ base: "xl", md: "3xl" }}>
+			<Heading as="h1" fontSize={{ base: "xl", md: "3xl" }} isTruncated>
 				Password Manager
 			</Heading>
 			<HStack spacing={4}>

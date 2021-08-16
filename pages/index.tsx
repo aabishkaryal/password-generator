@@ -11,7 +11,12 @@ import { Flex } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
 	return (
-		<Flex alignItems="center" direction="column">
+		<Flex
+			alignItems="center"
+			direction="column"
+			width="100%"
+			minWidth="300px"
+		>
 			<Head>
 				<title>Password Manager</title>
 			</Head>
