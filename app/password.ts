@@ -5,7 +5,7 @@ import {
 	NUMBERS,
 	SPECIAL_CHARS,
 	AMBIGIOUS_CHARS,
-} from "./constants";
+} from "@app/constants";
 
 export type GeneratorParams = {
 	numLetters: number;
