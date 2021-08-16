@@ -114,9 +114,6 @@ export const Generator: ChakraComponent<"div", {}> = () => {
 						isTruncated
 					/>
 					<InputRightElement
-						children={
-							<Icon boxSize={ICON_SIZE_SM} as={FaSyncAlt} />
-						}
 						cursor="pointer"
 						onClick={() => {
 							updatePassword(
@@ -127,7 +124,9 @@ export const Generator: ChakraComponent<"div", {}> = () => {
 								})
 							);
 						}}
-					/>
+					>
+						<Icon boxSize={ICON_SIZE_SM} as={FaSyncAlt} />
+					</InputRightElement>
 				</InputGroup>
 				<Button backgroundColor="transparent" onClick={onCopy}>
 					<HStack spacing={2} padding={4}>
