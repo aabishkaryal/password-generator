@@ -45,48 +45,52 @@ export const Generator: ChakraComponent<"div", {}> = () => {
     );
     const { onCopy, hasCopied } = useClipboard(password);
 
-    const updateNumLetters = async (nL: number) => {
+    const updateNumLetters = (nL: number) => {
         changeNumLetters(nL);
-        const password = GeneratePassword({
-            numLetters: nL,
-            numNumbers,
-            numSpecialChars,
-            isAmbigious,
-        });
-        updatePassword(password);
+        updatePassword(
+            GeneratePassword({
+                numLetters: nL,
+                numNumbers,
+                numSpecialChars,
+                isAmbigious,
+            })
+        );
     };
 
-    const updateNumNumbers = async (nN: number) => {
+    const updateNumNumbers = (nN: number) => {
         changeNumNumbers(nN);
-        const password = GeneratePassword({
-            numLetters,
-            numNumbers: nN,
-            numSpecialChars,
-            isAmbigious,
-        });
-        updatePassword(password);
+        updatePassword(
+            GeneratePassword({
+                numLetters,
+                numNumbers: nN,
+                numSpecialChars,
+                isAmbigious,
+            })
+        );
     };
 
-    const updateNumSpecialChars = async (nSC: number) => {
+    const updateNumSpecialChars = (nSC: number) => {
         changeNumSpecialChars(nSC);
-        const password = GeneratePassword({
-            numLetters,
-            numNumbers,
-            numSpecialChars: nSC,
-            isAmbigious,
-        });
-        updatePassword(password);
+        updatePassword(
+            GeneratePassword({
+                numLetters,
+                numNumbers,
+                numSpecialChars: nSC,
+                isAmbigious,
+            })
+        );
     };
 
-    const updateAmbigious = async (isAmb: boolean) => {
+    const updateAmbigious = (isAmb: boolean) => {
         updateIsAmbigious(isAmb);
-        const password = GeneratePassword({
-            numLetters,
-            numNumbers,
-            numSpecialChars,
-            isAmbigious: isAmb,
-        });
-        updatePassword(password);
+        updatePassword(
+            GeneratePassword({
+                numLetters,
+                numNumbers,
+                numSpecialChars,
+                isAmbigious: isAmb,
+            })
+        );
     };
 
     const regeneratePassword = () => {
