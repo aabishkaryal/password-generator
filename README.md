@@ -1,4 +1,4 @@
-# Password Manager:
+# Password Generator:
 
 This webapp generates random passwords with user configurable length and complexity.
 
