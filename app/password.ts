@@ -1,7 +1,6 @@
 import { GetRandomInt } from "@app/utils";
 import {
-	LOWERCASE_ALPHABETS,
-	UPPERCASE_ALPHABETS,
+	ALPHABETS,
 	NUMBERS,
 	SPECIAL_CHARS,
 	AMBIGIOUS_CHARS,
@@ -11,33 +10,31 @@ export type GeneratorParams = {
 	numLetters: number;
 	numNumbers?: number;
 	numSpecialChars?: number;
-	ambigious?: boolean;
+	isAmbigious?: boolean;
 };
 
 export function GeneratePassword({
 	numLetters = 8,
 	numNumbers = 0,
 	numSpecialChars = 0,
-	ambigious = false,
+	isAmbigious = false,
 }: GeneratorParams): string {
+	const randomLetters = GetRandomChars(ALPHABETS, numLetters).split("");
+	const randomNumbers = GetRandomChars(NUMBERS, numNumbers).split("");
+	const randomSpecialChars = GetRandomChars(SPECIAL_CHARS + isAmbigious ? AMBIGIOUS_CHARS : "", numSpecialChars).split("");
+	const result = [...randomLetters, ...randomNumbers, ...randomSpecialChars]
+	result.sort(() => 0.5 - Math.random());
+	return result.join("");
+}
+
+// Given an string and a number return a new string with n random characters (repition allowed)
+export function GetRandomChars(str: string, n: number): string {
 	const chars = [];
-	const letters = LOWERCASE_ALPHABETS + UPPERCASE_ALPHABETS;
-	while (numLetters + numNumbers + numSpecialChars > 0) {
-		const searchSpace =
-			(numLetters > 0 ? letters : "") +
-			(numNumbers > 0 ? NUMBERS : "") +
-			(numSpecialChars > 0 ? SPECIAL_CHARS : "") +
-			(numSpecialChars > 0 && ambigious ? AMBIGIOUS_CHARS : "");
-		const char = searchSpace[GetRandomInt(0, searchSpace.length - 1)];
-		chars.push(char);
-		if (letters.indexOf(char) >= 0) numLetters--;
-		if (NUMBERS.indexOf(char) >= 0) numNumbers--;
-		if (
-			SPECIAL_CHARS.indexOf(char) >= 0 ||
-			(ambigious && AMBIGIOUS_CHARS.indexOf(char) >= 0)
-		)
-			numSpecialChars--;
+	
+	for (let i = 0; i < n; i++) {
+		const randomIndex = GetRandomInt(0, str.length);
+		chars.push(str[randomIndex]);
 	}
-	chars.sort(() => 0.5 - Math.random());
+	
 	return chars.join("");
 }
