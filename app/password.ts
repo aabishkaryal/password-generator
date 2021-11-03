@@ -21,9 +21,9 @@ export function GeneratePassword({
 }: GeneratorParams): string {
     const randomLetters = GetRandomChars(ALPHABETS, numLetters).split("");
     const randomNumbers = GetRandomChars(NUMBERS, numNumbers).split("");
-    const specialChars = SPECIAL_CHARS.concat(
-        isAmbigious ? AMBIGIOUS_CHARS : ""
-    );
+    const specialChars = isAmbigious
+        ? SPECIAL_CHARS + AMBIGIOUS_CHARS
+        : SPECIAL_CHARS;
     const randomSpecialChars = GetRandomChars(
         specialChars,
         numSpecialChars
